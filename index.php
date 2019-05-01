@@ -1,14 +1,14 @@
 <?php
-    /*Created my own DB but try to use TMBD API"
-    require('connection.php'); 
-    */
     require('tmdb.php');
-    include 'ChromePhp.php';
+    /*$hi = count($_SESSION['korean_list']['items']);
+    var_dump($hi);
+    die();
+    */
 
 
-    //ChromePhp::log('Hello console!');
-    ChromePhp::log($_SERVER);
-    //ChromePhp::warn('something went wrong!');
+    //var_dump($_SESSION['korean_list']['items']);
+    //die();
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,9 +16,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Movies</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Movie Recommendations</h1>
+    <div class="container">
+    
+        <h1>Movie Recommendations</h1>
+        <h4>Tasks</h4>
+        <ol>
+            <li>My Favorites </li>
+            <li>Korean/Categories </li>
+            <li>My Watchlists </li>
+        </ol>  
+    
+        <a href="/views/main.php">Main Page</a> 
+        <form action="/views/logout.php" method="post">
+            <input type="hidden" name="logout" value="logout">
+            <input type="submit" value="Logout">
+        </form>
+
+        <h1>My Korean Lists</h1>
+        
+        <div class="row">
+            <?php foreach($_SESSION['korean_list']['items'] as $movie => $info){
+                $image = $info['poster_path'];
+                //var_dump($info);
+                //die();
+                /*if($movie % 3 == 0) {
+                    var_dump($movie);
+                    var_dump($info['title']);
+                } else {
+                    //var_dump("Not a factor of 3");
+                    var_dump($movie);
+                }*/
+            ?>
+                <div class="col-lg-3">
+                    <a href="views/movie.php?movieId=<?=$info['id']?>">
+                        <h4><?=$info['title']?></h4>
+                        <?php echo getImage($image, $client)?>
+                    </a>
+                </div>
+            <?php
+            }
+            ?>
+         </div>
+
+
+
+
+         <div class="row">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <?php
+                        foreach($_SESSION['korean_list']['items'] as $movie => $info){
+                            $image = $info['poster_path'];
+                            //var_dump($info['title']);
+                            if($movie == 0) {
+                    ?>
+                                <div class="carousel-item active">
+                                    <?php echo getImage($image, $client)?>
+                                </div>
+                    <?php
+                            } else {
+                            
+                    ?>
+                                <div class="carousel-item">
+                                <?php echo getImage($image, $client) ?>
+                                </div>
+                    <?php
+                            
+                            } 
+                        }
+
+                    ?>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
