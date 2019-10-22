@@ -25,7 +25,7 @@
    * $session_id will grab the SESSION ID under $session_id['session_id']
    *  
    * */
-  $session_id = $login_process->getSessionTokenWithLogin($request['request_token'], getenv('username'), getenv('password'));
+  $session_id = $login_process->getSessionTokenWithLogin($request['request_token'], ENV('username'), ENV('password'));
 
   /**
    * 
