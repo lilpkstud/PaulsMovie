@@ -1,10 +1,11 @@
 <?
   require "vendor/autoload.php";
-
   session_start();
+  $dotenv = Dotenv\Dotenv::create(__DIR__);
+  $dotenv->load();  
  
 
-  $token = new \Tmdb\ApiToken(config.API_KEY);
+  $token = new \Tmdb\ApiToken(getenv('myToken'));
   $client = new \Tmdb\Client($token, ['secure' => false]);
   $configRepository = new \Tmdb\Repository\ConfigurationRepository($client);
 
@@ -24,7 +25,7 @@
    * $session_id will grab the SESSION ID under $session_id['session_id']
    *  
    * */
-  $session_id = $login_process->getSessionTokenWithLogin($request['request_token'], config.username, config.password);
+  $session_id = $login_process->getSessionTokenWithLogin($request['request_token'], getenv('username'), getenv('password'));
 
   /**
    * 

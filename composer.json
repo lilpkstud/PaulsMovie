@@ -1,5 +1,6 @@
 {
     "require": {
-        "php-tmdb/api": "~2.1"
+        "php-tmdb/api": "~2.1",
+        "vlucas/phpdotenv": "^3.6"
     }
 }

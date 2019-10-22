@@ -11,6 +11,7 @@ class ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -20,6 +21,7 @@ class ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49
         ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Contracts\\' => 18,
             'Symfony\\Component\\OptionsResolver\\' => 34,
             'Symfony\\Component\\EventDispatcher\\' => 34,
@@ -41,6 +43,7 @@ class ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49
         ),
         'D' => 
         array (
+            'Dotenv\\' => 7,
             'Doctrine\\Common\\Cache\\' => 22,
         ),
         'C' => 
@@ -53,6 +56,10 @@ class ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49
         'Tmdb\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-tmdb/api/lib/Tmdb',
+        ),
+        'Symfony\\Polyfill\\Ctype\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
         'Symfony\\Contracts\\' => 
         array (
@@ -90,6 +97,10 @@ class ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
+        'Dotenv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
+        ),
         'Doctrine\\Common\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
@@ -100,11 +111,22 @@ class ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'PhpOption\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpoption/phpoption/src',
+            ),
+        ),
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
