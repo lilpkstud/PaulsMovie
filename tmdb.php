@@ -46,47 +46,97 @@
    * 110918 - KDrama
    **/
 
-  $getList = $account->getLists($myAccount['id'], ['session_id' => $session_id['session_id']]);
-
+  $getAllLists = $account->getLists($myAccount['id'], ['session_id' => $session_id['session_id']]);
 
   $list = new \Tmdb\Api\Lists($client);
 
-  $myList = [];
+  /**
+   * 
+   * Grabbing my Korean Movies LIST
+   */
+  $myKoreanMovieList = [];
+  $koreanMovies = $getAllLists['results'][0];
+  array_push($myKoreanMovieList, $list->getList($koreanMovies['id']));
 
-  foreach ($getList['results'] as $listing) {
-    array_push($myList, $list->getList($listing['id']));
+  /**
+   * Grabbing all Rated Tv Shows and then filtering korean dramas by [origin_country] => "KR"
+   */
+  $myTVRatings = [];
+  $myKoreanDramaList = [];
+
+  $pages = $account->getRatedTvShows($myAccount['id'], ['session_id' => $session_id['session_id']]);
+
+  for($total = 1; $total <= $pages['total_pages']; $total++){
+    array_push($myTVRatings, $account->GetRatedTvShows($myAccount['id'],['session_id' => $session_id['session_id'], 'page' => $total]));
+
+    for($totalRatedShows = 0; $totalRatedShows <= $myTVRatings[0]["total_results"]; $totalRatedShows++){
+      //var_dump($myTVRatings[0]['results'][$totalRatedShows]['origin_country']);
+      if($myTVRatings[0]['results'][$totalRatedShows]['origin_country'][0] == "KR" || $myTVRatings[1]['results'][$totalRatedShows]['origin_count'][0] == "KR"){
+        array_push($myKoreanDramaList, $myTVRatings[0]['results'][$totalRatedShows]);
+      }
+    }
+
   }
+
+  //var_dump($myTVRatings[0]["total_results"]);
+  /*if($myTVRatings[0]['results'][1]['origin_country'][0] == "KR"){
+    var_dump("MADE IT");
+  }*/
+  //var_dump($myKoreanDramaList[2]);
+  //die();
+
+  
+
+  
+  
+ 
+
+  //array_push($myKoreanDramaList, $list->getList($koreanDramas['id']));
+
+
+  //var_dump($myKoreanMovieList);
+  //die();
+
+  /*foreach ($getList['results'] as $listing) {    
+    array_push($myList, $list->getList($listing['id']));
+  }*/
+
+  //var_dump($myKoreanDramaList);
+  //die();
 
   /**
    * Grabbing my Rating Movies
    * 
    */
-    $myRatings = [];
+    $myMovieRatings = [];
     $pages = $account->getRatedMovies($myAccount['id'], ['session_id' => $session_id['session_id']]);
     for($total = 1; $total <= $pages['total_pages']; $total++){
-      array_push($myRatings, $account->getRatedMovies($myAccount['id'],['session_id' => $session_id['session_id'], 'page' => $total]));
+      array_push($myMovieRatings, $account->getRatedMovies($myAccount['id'],['session_id' => $session_id['session_id'], 'page' => $total]));
     }
+    ///Movies must be filtered by original_language
+    //var_dump($myMovieRatings[0]["results"]);
+    //die();
+
+  
 
 
-/**
- * User Authentication
- * Step 1: Creating a new request token and saving it into $request_token['request_token']
- **/
-    function getRequestToken($login_process){
-      return $login_process->getNewToken();
-    }
+  /**
+   * User Authentication
+   * Step 1: Creating a new request token and saving it into $request_token['request_token']
+   **/
+      function getRequestToken($login_process){
+        return $login_process->getNewToken();
+      }
 
-/**
- * Step 2: Get the user to authorize the request token
- * 
- * This will go to the website asking for permission. BUT the redirect method isnt working or I have NO CLUE what to do next.
- **/
-    function getRequest($login_process, $request_token){
-      $user = $login_process->authenticateRequestToken($request_token['request_token']);
-      $login_process->getNewSession($user);
-    }
-
-
+  /**
+   * Step 2: Get the user to authorize the request token
+   * 
+   * This will go to the website asking for permission. BUT the redirect method isnt working or I have NO CLUE what to do next.
+   **/
+      function getRequest($login_process, $request_token){
+        $user = $login_process->authenticateRequestToken($request_token['request_token']);
+        $login_process->getNewSession($user);
+      }
 
     function getImage($image, $client){
 

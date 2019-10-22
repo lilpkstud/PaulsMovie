@@ -48,7 +48,7 @@
                 <div id="collapseKorean" class="collapse show" aria-labelledby="koreanList" data-parent="#accordionExample">
                     <div class="card-body">
                        <div class="row">
-                            <?php foreach($myList[1]['items'] as $movie => $info){
+                            <?php foreach($myKoreanDramaList as $movie => $info){
                                 $image = $info['poster_path'];
                                 //var_dump($info);
                                 //die();
@@ -79,7 +79,7 @@
                 <div id="collapseKoreanDrama" class="collapse" aria-labelledby="KoreanDrama" data-parent="#accordionExample">
                 <div class="card-body">
                        <div class="row">
-                            <?php foreach($myList[0]['items'] as $movie => $info){
+                            <?php foreach($myKoreanMovieList[0]['items'] as $movie => $info){
                                 $image = $info['poster_path'];
                             ?>
                                 <div class="col">
@@ -108,8 +108,8 @@
                     <div class="card-body">
                         <div class="row">
                             <?php
-                                for($index = 0; $index <= count($myRatings); $index++){
-                                    foreach($myRatings[$index]['results'] as $movie => $info){    
+                                for($index = 0; $index <= count($myMovieRatings); $index++){
+                                    foreach($myMovieRatings[$index]['results'] as $movie => $info){    
                                         $image = $info['poster_path'];
                             ?>
                                         <div class="col">
