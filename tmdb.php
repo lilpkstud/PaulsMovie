@@ -5,7 +5,7 @@
   $dotenv->load();  
  
 
-  $token = new \Tmdb\ApiToken(getenv('myToken'));
+  $token = new \Tmdb\ApiToken(ENV['API_KEY']);
   $client = new \Tmdb\Client($token, ['secure' => false]);
   $configRepository = new \Tmdb\Repository\ConfigurationRepository($client);
 
