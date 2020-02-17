@@ -10,15 +10,15 @@
 
     if($_GET['type'] === "movies") {
         $info = search_list($_GET['movieId'], $myList[0]['items']);
-        $rating = getMyRating($_GET['movieId'], $myRatings);
+        $rating = getMyRating($_GET['movieId'], $myMovieRatings);
     } 
     if($_GET['type'] === "dramas"){
         $info = search_list($_GET['movieId'], $myList[1]['items']);
-        $rating = getMyRating($_GET['movieId'], $myRatings);
+        $rating = getMyRating($_GET['movieId'], $myMovieRatings);
     }
     if($_GET['type'] == "rated"){
         $info = getMovieInfo($_GET['movieId'], $client);
-        $rating = getMyRating($_GET['movieId'], $myRatings);
+        $rating = getMyRating($_GET['movieId'], $myMovieRatings);
     }
 
 ?>

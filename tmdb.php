@@ -2,10 +2,14 @@
   require "vendor/autoload.php";
   session_start();
   $dotenv = Dotenv\Dotenv::create(__DIR__);
-  $dotenv->load();  
- 
+  $dotenv->load(); 
+  
+  $api = getenv('api');
+  $username = getenv('username');
+  $password = getenv('password');
 
-  $token = new \Tmdb\ApiToken(ENV['API_KEY']);
+
+  $token = new \Tmdb\ApiToken($api);
   $client = new \Tmdb\Client($token, ['secure' => false]);
   $configRepository = new \Tmdb\Repository\ConfigurationRepository($client);
 
@@ -25,7 +29,7 @@
    * $session_id will grab the SESSION ID under $session_id['session_id']
    *  
    * */
-  $session_id = $login_process->getSessionTokenWithLogin($request['request_token'], ENV('username'), ENV('password'));
+  $session_id = $login_process->getSessionTokenWithLogin($request['request_token'], $username, $password);
 
   /**
    * 
