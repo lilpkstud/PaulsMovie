@@ -5,15 +5,17 @@
      * myList[0] has all of my Korean Movies
      * myList[1] has all of my Korean Dramas
      */
-        //var_dump($myList[0]['items']);
-        //var_dump($myList[1]['items']);
+        #var_dump($myKoreanDramaList);
+       # var_dump($myList[0]['items']);
+        #var_dump($myList[1]['items']);
 
     if($_GET['type'] === "movies") {
         $info = search_list($_GET['movieId'], $myList[0]['items']);
         $rating = getMyRating($_GET['movieId'], $myMovieRatings);
     } 
     if($_GET['type'] === "dramas"){
-        $info = search_list($_GET['movieId'], $myList[1]['items']);
+        #$info = search_list($_GET['movieId'], $myList[1]['items']);
+        $info = search_list($_GET['movieId'], $myKoreanDramaList);
         $rating = getMyRating($_GET['movieId'], $myMovieRatings);
     }
     if($_GET['type'] == "rated"){
