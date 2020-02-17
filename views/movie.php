@@ -10,7 +10,7 @@
         #var_dump($myList[1]['items']);
 
     if($_GET['type'] === "movies") {
-        $info = search_list($_GET['movieId'], $myList[0]['items']);
+        $info = search_list($_GET['movieId'], $myKoreanMovieList[0]['items']);
         $rating = getMyRating($_GET['movieId'], $myMovieRatings);
     } 
     if($_GET['type'] === "dramas"){
