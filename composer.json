@@ -1,4 +1,6 @@
 {
+    "name": "PaulsMovie",
+    "description": "List of all my favorite movies",
     "require": {
         "php-tmdb/api": "~2.1",
         "vlucas/phpdotenv": "^3.6"

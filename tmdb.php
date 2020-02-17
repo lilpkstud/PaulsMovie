@@ -1,14 +1,10 @@
 <?
   require "vendor/autoload.php";
   session_start();
+  ## Uncommented since getenv() commands are from heroku config vars
+    ###https://stackoverflow.com/questions/21592832/use-heroku-config-vars-with-php
   #$dotenv = Dotenv\Dotenv::create(__DIR__);
   #$dotenv->load(); 
-
-  $hi = getenv('api');
-
-  var_dump("Testing");
-  var_dump($hi);
-  die();
 
   $api = getenv('api');
   $username = getenv('username');
