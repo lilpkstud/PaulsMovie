@@ -1,9 +1,15 @@
 <?
   require "vendor/autoload.php";
   session_start();
-  $dotenv = Dotenv\Dotenv::create(__DIR__);
-  $dotenv->load(); 
-  
+  #$dotenv = Dotenv\Dotenv::create(__DIR__);
+  #$dotenv->load(); 
+
+  $hi = getenv('api');
+
+  var_dump("Testing");
+  var_dump($hi);
+  die();
+
   $api = getenv('api');
   $username = getenv('username');
   $password = getenv('password');

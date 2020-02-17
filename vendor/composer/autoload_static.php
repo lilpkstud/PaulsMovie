@@ -22,7 +22,7 @@ class ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49
         'S' => 
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
-            'Symfony\\Contracts\\' => 18,
+            'Symfony\\Contracts\\EventDispatcher\\' => 34,
             'Symfony\\Component\\OptionsResolver\\' => 34,
             'Symfony\\Component\\EventDispatcher\\' => 34,
         ),
@@ -30,6 +30,7 @@ class ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49
         array (
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
+            'PhpOption\\' => 10,
         ),
         'K' => 
         array (
@@ -61,9 +62,9 @@ class ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
-        'Symfony\\Contracts\\' => 
+        'Symfony\\Contracts\\EventDispatcher\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/contracts',
+            0 => __DIR__ . '/..' . '/symfony/event-dispatcher-contracts',
         ),
         'Symfony\\Component\\OptionsResolver\\' => 
         array (
@@ -80,6 +81,10 @@ class ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'PhpOption\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
         'Kevinrob\\GuzzleCache\\' => 
         array (
@@ -111,22 +116,11 @@ class ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49
         ),
     );
 
-    public static $prefixesPsr0 = array (
-        'P' => 
-        array (
-            'PhpOption\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpoption/phpoption/src',
-            ),
-        ),
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit9c06c8865c317c3275a49b2780ebcd49::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
